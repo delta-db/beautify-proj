@@ -2,4 +2,6 @@
 
 Uses js-beautify to beautify an entire directory.
 
-TODO: usage
+Usage
+---
+    beautify-proj -i dir -o dir -c json-config
