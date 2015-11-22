@@ -12,16 +12,15 @@ var beautify = require('../scripts'),
 
 describe('beautify', function () {
 
-  var read = function (filename) {
-    return new Promise(function (resolve, reject) {
-      fs.readFile(filename, 'utf8', function (err, data) {
-        if (err) {
-          reject(err);
-        }
-        resolve(data);
-      });
-    });
+  var readUtf8 = function (filename, callback) {
+    fs.readFile(filename, 'utf8', callback);
   };
+
+  var read = Promise.promisify(readUtf8);
+
+  var remove = Promise.promisify(fs.remove);
+
+  var copy = Promise.promisify(fs.copy);
 
   var diffFiles = function (filename1, filename2) {
     return read(filename1).then(function (data1) {
@@ -65,30 +64,6 @@ describe('beautify', function () {
       return Promise.all(promises);
     });
 
-  };
-
-  var remove = function (dir) {
-    return new Promise(function (resolve, reject) {
-      return fs.remove(dir, function (err) {
-        if (err) {
-          reject(err);
-        } else {
-          resolve();
-        }
-      });
-    });
-  };
-
-  var copy = function (src, dest) {
-    return new Promise(function (resolve, reject) {
-      fs.copy(src, dest, function (err) {
-        if (err) {
-          reject(err);
-        } else {
-          resolve();
-        }
-      });
-    });
   };
 
   it('should beautify', function () {

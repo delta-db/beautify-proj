@@ -7,38 +7,15 @@ var jsbeautify = require('js-beautify').js_beautify,
   path = require('path'),
   Promise = require('bluebird');
 
-var read = function (filename) {
-  return new Promise(function (resolve, reject) {
-    fs.readFile(filename, 'utf8', function (err, data) {
-      if (err) {
-        reject(err);
-      }
-      resolve(data);
-    });
-  });
+var readUtf8 = function (filename, callback) {
+  fs.readFile(filename, 'utf8', callback);
 };
 
-var mkdir = function (filename) {
-  return new Promise(function (resolve, reject) {
-    mkdirp(filename, function (err) { // create dir if needed
-      if (err) {
-        reject(err);
-      }
-      resolve();
-    });
-  });
-};
+var read = Promise.promisify(readUtf8);
 
-var write = function (filename, data) {
-  return new Promise(function (resolve, reject) {
-    fs.writeFile(filename, data, function (err) {
-      if (err) {
-        reject(err);
-      }
-      resolve();
-    });
-  });
-};
+var mkdir = Promise.promisify(mkdirp);
+
+var write = Promise.promisify(fs.writeFile);
 
 var mkdirpAndWrite = function (filename, data) {
   return mkdir(path.dirname(filename)).then(function () {
