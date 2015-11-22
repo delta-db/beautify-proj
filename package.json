@@ -1,0 +1,47 @@
+{
+  "name": "beautify-proj",
+  "version": "0.0.1",
+  "description": "JS Beautifier",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/delta-db/beautify-proj"
+  },
+  "keywords": [
+    "beautify",
+    "beautifier",
+    "js-beautifier"
+  ],
+  "author": "Geoffrey Cox",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/delta-db/beautify-proj/issues"
+  },
+  "scripts": {
+    "test-node": "istanbul test --dir coverage ./node_modules/mocha/bin/_mocha test/index.js",
+    "test": "npm run jshint && npm run test-node",
+    "beautify-for-test": "node index.js -i test -o beautified/beautified -c beautify.json && node index.js -i scripts -o beautified/beautified -c beautify.json",
+    "copy-to-beautified": "copyfiles 'test/**/*.js' beautified/original && copyfiles 'scripts/**/*.js' beautified/original",
+    "beautified": "git diff --quiet --no-index beautified/original beautified/beautified",
+    "assert-beautified": "npm run beautify-for-test && npm run copy-to-beautified && npm run beautified",
+    "beautify": "node index.js -i test -o . -c beautify.json && node index.js -i scripts -o . -c beautify.json",
+    "jshint": "jshint -c .jshintrc *.js test scripts",
+    "coverage": "mkdir -p coverage && npm test --coverage && istanbul check-coverage --lines 100 --function 100 --statements 100 --branches 100 coverage/coverage.json"
+  },
+  "dependencies": {
+    "bluebird": "^3.0.5",
+    "js-beautify": "^1.5.10",
+    "minimist": "^1.2.0",
+    "mkdirp": "^0.5.1",
+    "walk": "^2.3.9"
+  },
+  "devDependencies": {
+    "chai": "^3.4.1",
+    "chai-as-promised": "^5.1.0",
+    "copyfiles": "^0.2.1",
+    "coveralls": "^2.11.4",
+    "istanbul": "^0.4.0",
+    "jshint": "^2.8.0",
+    "mocha": "^2.3.4"
+  }
+}
