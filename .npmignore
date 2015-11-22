@@ -1,0 +1,8 @@
+.git*
+beautified
+coverage
+node_modules
+test-beautified
+.DS_Store
+*~
+npm-debug.log

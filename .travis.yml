@@ -1,0 +1,21 @@
+language: node_js
+
+node_js:
+  - "0.12"
+
+script: npm run $COMMAND
+
+after_script: "cat ./test/coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js"
+
+after_failure:
+  - cat /home/travis/build/delta-db/beautify-proj/npm-debug.log
+
+env:
+  matrix:
+  - COMMAND=coverage
+  - COMMAND=assert-beautified
+
+branches:
+  only:
+  - master
+  - /^pull*$/
