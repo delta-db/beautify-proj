@@ -1,44 +1,21 @@
 'use strict';
 
-var beautify = require('js-beautify').js_beautify,
+var jsbeautify = require('js-beautify').js_beautify,
   fs = require('fs'),
   mkdirp = require('mkdirp'),
   walk = require('walk'),
   path = require('path'),
   Promise = require('bluebird');
 
-var read = function (filename) {
-  return new Promise(function (resolve, reject) {
-    fs.readFile(filename, 'utf8', function (err, data) {
-      if (err) {
-        reject(err);
-      }
-      resolve(data);
-    });
-  });
+var readUtf8 = function (filename, callback) {
+  fs.readFile(filename, 'utf8', callback);
 };
 
-var mkdir = function (filename) {
-  return new Promise(function (resolve, reject) {
-    mkdirp(filename, function (err) { // create dir if needed
-      if (err) {
-        reject(err);
-      }
-      resolve();
-    });
-  });
-};
+var read = Promise.promisify(readUtf8);
 
-var write = function (filename, data) {
-  return new Promise(function (resolve, reject) {
-    fs.writeFile(filename, data, function (err) {
-      if (err) {
-        reject(err);
-      }
-      resolve();
-    });
-  });
-};
+var mkdir = Promise.promisify(mkdirp);
+
+var write = Promise.promisify(fs.writeFile);
 
 var mkdirpAndWrite = function (filename, data) {
   return mkdir(path.dirname(filename)).then(function () {
@@ -48,14 +25,17 @@ var mkdirpAndWrite = function (filename, data) {
 
 var beautifyFile = function (filename, options, inDir, outDir) {
   return read(filename).then(function (data) {
-    var beautifulData = beautify(data, options);
+    var beautifulData = jsbeautify(data, options);
 
-    // E.G. if filename=/test-no-beautified/mydir/ugly.js and
-    // inDir=/test-no-beautified
-    // then relFilename is ugly.js
-    var relFilename = filename.substring(inDir.length + 1);
+    var inDirDir = path.dirname(inDir);
+
+    // E.G. if filename=/tmp/test-no-beautified/mydir/ugly.js and
+    // inDir=/tmp/test-no-beautified
+    // then relFilename is test-no-beautified/mydir/ugly.js
+    var relFilename = filename.substring(inDirDir.length + 1);
 
     var outFilename = path.resolve(outDir, relFilename);
+
     return mkdirpAndWrite(outFilename, beautifulData);
   });
 };
@@ -92,11 +72,11 @@ var beautifyAll = function (options, inDir, outDir) {
 
 };
 
-var _beautify = function (inDir, outDir, configFile) {
-  return read(path.resolve(__dirname, configFile)).then(function (data) { // read config
+var beautify = function (inDir, outDir, configFile) {
+  return read(configFile).then(function (data) { // read config
     var options = JSON.parse(data);
-    return beautifyAll(options, path.resolve(__dirname, inDir), path.resolve(__dirname, outDir));
+    return beautifyAll(options, inDir, outDir);
   });
 };
 
-module.exports = _beautify;
+module.exports = beautify;

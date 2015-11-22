@@ -2,12 +2,13 @@
 
     // This is a comment where the indentation is off
 
-var Foo = function (variable1, variable2, variable3, variable4, variable5, variable6, variable7, variable8, variable9) {
-  this._x = { y: variable1, z: variable2 };
+var Foo = function (aLongVariableNameLikeThisGoesHere1, aLongVariableNameLikeThisGoesHere2, aLongVariableNameLikeThisGoesHere3) {
+  this._stuff = { x: aLongVariableNameLikeThisGoesHere1, y: aLongVariableNameLikeThisGoesHere2, z: aLongVariableNameLikeThisGoesHere3 };
     };
 
 Foo.prototype.bar = function () {
-  if ('something' === 'somethingelse' && 'anotherthing' === 'anotherthing' && 'allthingshere' !== 'someotherthing') {
+  var something = 'something';
+  if (something === 'somethingelse' && something === 'anotherthing' && something !== 'someotherthing') {
 
   }
 };
