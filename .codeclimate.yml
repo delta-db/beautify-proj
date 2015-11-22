@@ -1,0 +1,6 @@
+languages:
+  JavaScript: true
+
+exclude_paths:
+# Exclude test-not-beautified as it contains ugly js
+- test-not-beautified/**/*
