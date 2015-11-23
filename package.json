@@ -20,13 +20,10 @@
   "scripts": {
     "test-node": "istanbul test --dir coverage ./node_modules/mocha/bin/_mocha test/index.js",
     "test": "npm run jshint && npm run test-node",
-    "beautify-for-test": "node index.js -i test -o beautified/beautified -c beautify.json && node index.js -i scripts -o beautified/beautified -c beautify.json",
-    "copy-to-beautified": "copyfiles 'test/**/*.js' beautified/original && copyfiles 'scripts/**/*.js' beautified/original",
-    "beautified": "git diff --quiet --no-index beautified/original beautified/beautified",
-    "assert-beautified": "npm run beautify-for-test && npm run copy-to-beautified && npm run beautified",
+    "assert-beautified": "node index.js -i test -c beautify.json && node index.js -i scripts -c beautify.json",
     "beautify": "node index.js -i test -o . -c beautify.json && node index.js -i scripts -o . -c beautify.json",
     "jshint": "jshint -c .jshintrc *.js test scripts",
-    "coverage": "mkdir -p coverage && npm test --coverage && istanbul check-coverage --lines 100 --function 100 --statements 100 --branches 100 coverage/coverage.json"
+    "coverage": "npm test --coverage && istanbul check-coverage --lines 100 --function 100 --statements 100 --branches 100 coverage/coverage.json"
   },
   "dependencies": {
     "bluebird": "^3.0.5",
