@@ -12,9 +12,13 @@ See [js-beautify](https://github.com/beautify-web/js-beautify) for JSON config f
 Examples
 ---
 
-Beautify scripts dir and place beautified files in `./scripts`:
+Beautify `./scripts` in place:
 
     beautify-proj -i scripts -o . -c beautify.json
+
+Beautify `./scripts` and place beautified files in `/tmp/scripts`:
+
+    beautify-proj -i scripts -o /tmp -c beautify.json
 
 Test for any ugly files (non-beautified) in `scripts`:
 
