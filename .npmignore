@@ -1,5 +1,4 @@
 .git*
-beautified
 coverage
 node_modules
 test-beautified

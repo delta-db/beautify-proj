@@ -66,13 +66,13 @@ describe('beautify', function () {
 
   };
 
-  it('should beautify', function () {
-    var testNotBeautified = path.resolve(__dirname, '../test-not-beautified'),
-      testBeautified = path.resolve(__dirname, '../test-beautified'),
-      configFile = path.resolve(__dirname, '../beautify.json'),
-      testIsBeautified = path.resolve(__dirname, '../test-is-beautified'),
-      root = path.resolve(__dirname, '..');
+  var testNotBeautified = path.resolve(__dirname, '../test-not-beautified'),
+    testBeautified = path.resolve(__dirname, '../test-beautified'),
+    configFile = path.resolve(__dirname, '../beautify.json'),
+    testIsBeautified = path.resolve(__dirname, '../test-is-beautified'),
+    root = path.resolve(__dirname, '..');
 
+  it('should beautify', function () {
     // Remove destination for a clean test
     return remove(testBeautified).then(function () {
       // Copy files to another directory so that we don't change the originals
@@ -84,6 +84,22 @@ describe('beautify', function () {
       // Compare results against expected results
       return diff(testIsBeautified, testBeautified);
     });
+  });
+
+  it('should throw when ugly files', function () {
+    return new Promise(function (resolve, reject) {
+      setTimeout(function () {
+        reject(new Error('exception not thrown'));
+      }, 1000);
+
+      beautify(testNotBeautified, null, configFile).catch(function () {
+        resolve();
+      });
+    });
+  });
+
+  it('should not throw when no ugly files', function () {
+    return beautify(testBeautified, null, configFile);
   });
 
 });

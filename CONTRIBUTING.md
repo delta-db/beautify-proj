@@ -39,13 +39,13 @@ Publishing to npm
 Run single test
 ---
 
-	node_modules/mocha/bin/mocha -g regex test/index.js
+	node_modules/mocha/bin/mocha -g regex test
 
 
 Run subset of tests and analyze coverage
 ---
 
-	node_modules/istanbul/lib/cli.js cover _mocha -- -g regex test/index.js
+	node_modules/istanbul/lib/cli.js cover _mocha -- -g regex test
 
 
 Debugging Tests Using Node Inspector
