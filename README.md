@@ -4,4 +4,6 @@ Uses js-beautify to beautify an entire directory.
 
 Usage
 ---
-    beautify-proj -i dir -o dir -c json-config
+    beautify-proj -i dir -o dir -c js-beautify-config-file
+
+See [js-beautify](https://github.com/beautify-web/js-beautify) for JSON config file options.

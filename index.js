@@ -5,7 +5,7 @@ var beautify = require('./scripts'),
   argv = require('minimist')(process.argv.slice(2));
 
 if (!argv.i || !argv.o || !argv.c) {
-  console.log('Usage: beautify-proj -i dir -o dir -c json-config');
+  console.log('Usage: beautify-proj -i dir -o dir -c js-beautify-config-file');
 } else {
   beautify(path.resolve(argv.i), path.resolve(argv.o), path.resolve(argv.c));
 }
