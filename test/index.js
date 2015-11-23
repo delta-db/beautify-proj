@@ -57,7 +57,7 @@ describe('beautify', function () {
         resolve();
       });
 
-      // todo: use walker.on('errors') to reject()?
+      // IDEA: use walker.on('errors') to reject()?
 
     }).then(function () {
       // We've walked all the files, but make sure we have diffed all the files

@@ -63,7 +63,7 @@ var beautifyAll = function (options, inDir, outDir) {
       resolve();
     });
 
-    // todo: use walker.on('errors') to reject()?
+    // IDEA: use walker.on('errors') to reject()?
 
   }).then(function () {
     // We've walked all the files, but make sure we have beautified all the files
