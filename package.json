@@ -1,6 +1,6 @@
 {
   "name": "beautify-proj",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "JS Beautifier",
   "main": "index.js",
   "repository": {
