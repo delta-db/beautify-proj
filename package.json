@@ -17,11 +17,14 @@
   "bugs": {
     "url": "https://github.com/delta-db/beautify-proj/issues"
   },
+  "bin": {
+    "beautify-proj": "./beautify-proj"
+  },
   "scripts": {
     "test-node": "istanbul test --dir coverage ./node_modules/mocha/bin/_mocha test/index.js",
     "test": "npm run jshint && npm run test-node",
-    "assert-beautified": "node index.js -i test -c beautify.json && node index.js -i scripts -c beautify.json",
-    "beautify": "node index.js -i test -o . -c beautify.json && node index.js -i scripts -o . -c beautify.json",
+    "assert-beautified": "./beautify-proj -i test -c beautify.json && ./beautify-proj -i scripts -c beautify.json",
+    "beautify": "./beautify-proj -i test -o . -c beautify.json && ./beautify-proj -i scripts -o . -c beautify.json",
     "jshint": "jshint -c .jshintrc *.js test scripts",
     "coverage": "npm test --coverage && istanbul check-coverage --lines 100 --function 100 --statements 100 --branches 100 coverage/coverage.json"
   },
