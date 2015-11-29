@@ -51,12 +51,14 @@ var beautifyFile = function (filename, options, inDir, outDir) {
   });
 };
 
-var beautifyAll = function (options, inDir, outDir) {
+var beautifyAll = function (options, inDir, outDir, exclude) {
 
   var promises = [],
     err = null;
 
   return new Promise(function (resolve) {
+
+    var regExp = new RegExp(exclude);
 
     var walker = walk.walk(inDir, {
       followLinks: false
@@ -65,7 +67,7 @@ var beautifyAll = function (options, inDir, outDir) {
     walker.on('file', function (root, stat, next) {
       var filename = path.resolve(root, stat.name);
       var ext = path.extname(filename);
-      if (ext === '.js') {
+      if (ext === '.js' && (!exclude || !regExp.test(filename))) {
         // If we don't catch the error here, we can get an "Unhandled rejection" error
         var promise = beautifyFile(filename, options, inDir, outDir).catch(function (_err) {
           err = _err;
@@ -93,10 +95,10 @@ var beautifyAll = function (options, inDir, outDir) {
 
 };
 
-var beautify = function (inDir, outDir, configFile) {
+var beautify = function (inDir, outDir, configFile, exclude) {
   return read(configFile).then(function (data) { // read config
     var options = JSON.parse(data);
-    return beautifyAll(options, inDir, outDir);
+    return beautifyAll(options, inDir, outDir, exclude);
   });
 };
 
