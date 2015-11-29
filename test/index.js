@@ -79,7 +79,7 @@ describe('beautify', function () {
       return copy(testNotBeautified, testBeautified);
     }).then(function () {
       // Beautify copied files
-      return beautify(testBeautified, root, configFile);
+      return beautify(testBeautified, root, configFile, 'keep-ugly');
     }).then(function () {
       // Compare results against expected results
       return diff(testIsBeautified, testBeautified);
@@ -92,14 +92,14 @@ describe('beautify', function () {
         reject(new Error('exception not thrown'));
       }, 1000);
 
-      beautify(testNotBeautified, null, configFile).catch(function () {
+      beautify(testNotBeautified, null, configFile, 'keep-ugly').catch(function () {
         resolve();
       });
     });
   });
 
   it('should not throw when no ugly files', function () {
-    return beautify(testBeautified, null, configFile);
+    return beautify(testBeautified, null, configFile, 'keep-ugly');
   });
 
 });

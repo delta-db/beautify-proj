@@ -7,9 +7,9 @@ var beautify = require('./scripts'),
   argv = require('minimist')(process.argv.slice(2));
 
 if (!argv.i || !argv.c) {
-  console.log('Usage: beautify-proj -i dir [ -o dir ] -c js-beautify-config-file');
+  console.log('Usage: beautify-proj -i dir [ -o dir ] -c js-beautify-config-file [ -e reg-ex ]');
 } else {
-  beautify(path.resolve(argv.i), argv.o ? path.resolve(argv.o) : null, path.resolve(argv.c))
+  beautify(path.resolve(argv.i), argv.o ? path.resolve(argv.o) : null, path.resolve(argv.c), argv.e)
     .catch(function (err) {
       console.log(err.message);
       process.exit(1);
