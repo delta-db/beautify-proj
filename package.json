@@ -37,7 +37,7 @@
   },
   "devDependencies": {
     "chai": "^3.4.1",
-    "chai-as-promised": "^5.1.0",
+    "chai-as-promised": "^6.0.0",
     "copyfiles": "^0.2.1",
     "coveralls": "^2.11.4",
     "fs-extra": "^0.26.2",
