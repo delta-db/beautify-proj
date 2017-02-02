@@ -40,7 +40,7 @@
     "chai-as-promised": "^6.0.0",
     "copyfiles": "^1.1.1",
     "coveralls": "^2.11.4",
-    "fs-extra": "^0.26.2",
+    "fs-extra": "^0.30.0",
     "istanbul": "^0.4.0",
     "jshint": "^2.8.0",
     "mocha": "^3.0.2"
