@@ -36,7 +36,7 @@
     "walk": "^2.3.9"
   },
   "devDependencies": {
-    "chai": "^3.4.1",
+    "chai": "^4.0.0",
     "chai-as-promised": "^6.0.0",
     "copyfiles": "^1.1.1",
     "coveralls": "^2.11.4",
