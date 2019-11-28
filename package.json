@@ -29,7 +29,7 @@
     "coverage": "npm test --coverage && istanbul check-coverage --lines 100 --function 100 --statements 100 --branches 100 coverage/coverage.json"
   },
   "dependencies": {
-    "bluebird": "^3.5.2",
+    "bluebird": "^3.7.2",
     "js-beautify": "^1.8.8",
     "minimist": "^1.2.0",
     "mkdirp": "^0.5.1",
