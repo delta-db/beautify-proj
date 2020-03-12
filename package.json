@@ -31,7 +31,7 @@
   "dependencies": {
     "bluebird": "^3.5.2",
     "js-beautify": "^1.8.8",
-    "minimist": "^1.2.0",
+    "minimist": "1.2.4",
     "mkdirp": "^0.5.1",
     "walk": "^2.3.14"
   },
