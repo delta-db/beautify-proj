@@ -29,20 +29,11 @@
     "coverage": "npm test --coverage && istanbul check-coverage --lines 100 --function 100 --statements 100 --branches 100 coverage/coverage.json"
   },
   "dependencies": {
-    "bluebird": "^3.5.2",
-    "js-beautify": "^1.8.8",
-    "minimist": "^1.2.0",
-    "mkdirp": "^0.5.1",
+    "bluebird": "^3.7.2",
+    "js-beautify": "^1.13.0",
+    "minimist": "^1.2.5",
+    "mkdirp": "^1.0.4",
     "walk": "^2.3.14"
   },
-  "devDependencies": {
-    "chai": "^4.2.0",
-    "chai-as-promised": "^7.1.1",
-    "copyfiles": "^2.1.0",
-    "coveralls": "^3.0.2",
-    "fs-extra": "^8.0.0",
-    "istanbul": "^0.4.5",
-    "jshint": "^2.9.6",
-    "mocha": "^6.0.0"
-  }
+  "devDependencies": {}
 }
